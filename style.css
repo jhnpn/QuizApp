@@ -13,14 +13,6 @@ body {
     align-items: center;
 }
 
-body.correct {
-    --hue: var(--hue-correct);
-}
-
-body.wrong {
-    --hue: var(--hue-wrong);
-}
-
 .wrapper {
     width: 800px;
     max-width: 80%;
@@ -60,6 +52,7 @@ body.wrong {
 .start-btn, .next-btn {
     font-size: 1.5rem;
     padding: 10px 20px;
+    border-radius: 5px;
 }
 
 .controls {

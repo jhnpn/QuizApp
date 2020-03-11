@@ -1,11 +1,14 @@
 var begin = $(".begin");
-var next = $(".next");
+var next = $("next");
 var questionContainer = $("#question-container");
 var question = $("#question");
 var answerButtons = $("#answer-buttons");
 
-function beginQuiz() {
+$(".begin").on("click", beginQuiz)
 
+function beginQuiz() {
+    $(".begin").addClass("hide");
+    $("#question-container").removeClass("hide");
 }
 
 function selectAnswer() {

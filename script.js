@@ -1,20 +1,53 @@
+// global variables
 var begin = $(".begin");
-var next = $("next");
+var next = $(".next");
 var questionContainer = $("#question-container");
-var question = $("#question");
+var questionElement = $("#question");
 var answerButtons = $("#answer-buttons");
 
-$(".begin").on("click", beginQuiz)
+// variables that will be needed for shuffling the order of questions
+let shuffledQuestions, currentQuestionIndex
 
+$(".begin").on("click", beginQuiz) //clicking on this will start the quiz
+
+// we need a function that will bring up the questions and answers after clicking the begin button
 function beginQuiz() {
     $(".begin").addClass("hide");
     $("#question-container").removeClass("hide");
+    shuffledQuestions = questions.sort(() => Math.random() - .5);
+    currentQuestionIndex = 0;
+    setNextQuestion();
 }
 
-function selectAnswer() {
+function setNextQuestion() {
+    resetState();
+    showQuestion(shuffledQuestions[currentQuestionIndex])
+}
+
+// change text to actually show the question we want
+function showQuestion(question) {
+    $("#question").text(question.question);
+    question.answers.forEach(answer => {
+        const button = $(document.createElement("button"))
+        $("button").text(answer.text);
+        $("button").addClass("btn");
+        if (answer.correct) {
+            $("button").data(answer.correct)
+        }
+        $("button").on("click", selectAnswer);
+        $("#answer-buttons").append($("button"));
+    })
+}
+
+function resetState() {
+    $(".next").addCleass("hide");
+}
+
+function selectAnswer(e) {
 
 }
 
+// questions needed for the quiz
 const questions = [
     {
         question: "Which of these are not part of the web development language?",
